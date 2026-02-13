@@ -3,6 +3,11 @@
   "name": "CSR Auto-Assigner",
   "version": "1.0",
   "description": "Automates CSR assignment on smartitsm.site.com",
+  "icons": {
+    "16": "icons/icon.png",
+    "48": "icons/icon.png",
+    "128": "icons/icon.png"
+  },
   "permissions": [
     "activeTab",
     "scripting",
