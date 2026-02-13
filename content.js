@@ -58,6 +58,6 @@
     setTimeout(() => {
       console.log("CSR Auto-Assigner: Redirecting to list page...");
       window.location.href = "http://127.0.0.1:5500/test_itsm_list.html";
-    }, 1000); // 1 second delay
+    }, 3000); // 1 second delay
   });
 })();

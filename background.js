@@ -26,38 +26,32 @@ chrome.contextMenus.onClicked.addListener((info, tab) => {
     }
   } else if (info.menuItemId === "assignCsrFromList") {
     if (tab.url && tab.url.startsWith("http://127.0.0.1:5500/test_itsm_list.html")) {
-      // 1. Inject Finder Script
-      chrome.scripting.executeScript({
-        target: { tabId: tab.id },
-        files: ["content_list_finder.js"]
-      }, (results) => {
-        if (results && results[0] && results[0].result) {
-          const targetUrl = results[0].result;
-          console.log(`Background: Navigating to ${targetUrl}`);
+      // 0. Get Repeat Count from Options
+      chrome.storage.sync.get({ repeatCount: 1 }, (items) => {
+        const count = parseInt(items.repeatCount, 10) || 1;
+        console.log(`Background: Starting automation loop with count: ${count}`);
 
-          // 2. Navigate to the found URL
-          chrome.tabs.update(tab.id, { url: targetUrl }, (updatedTab) => {
-            // 3. Listen for the update to complete
-            const listener = (listenTabId, changeInfo, listenTab) => {
-              if (listenTabId === tab.id && changeInfo.status === 'complete' && listenTab.url === targetUrl) {
-                // Remove listener to avoid multiple injections
-                chrome.tabs.onUpdated.removeListener(listener);
-
-                console.log("Background: Navigation complete. Injecting content script...");
-                // 4. Inject the form filling script
-                chrome.scripting.executeScript({
-                  target: { tabId: tab.id },
-                  files: ["content.js"]
-                });
-              }
-            };
-            chrome.tabs.onUpdated.addListener(listener);
-          });
-        } else {
-          console.log("Background: No unassigned CSR found.");
-          // Optional: Verify alert is possible in this context, or just log
-        }
+        // 1. Initialize Loop State
+        chrome.storage.local.set({ automationState: { active: true, remaining: count } }, () => {
+          // 2. Reload the page to trigger content_list_router.js
+          // Alternatively, we can just inject the router if we don't want to reload, 
+          // but reloading ensures a fresh state.
+          chrome.tabs.reload(tab.id);
+        });
       });
     }
+  }
+});
+
+// 3. Persistent Listener for Detail Page Injection
+// This is needed because content_list_router.js navigates to the detail page,
+// and we need to inject content.js when that navigation completes.
+chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
+  if (changeInfo.status === 'complete' && tab.url && tab.url.startsWith("http://127.0.0.1:5500/test_itsm_page.html")) {
+    console.log(`Background: Detected navigation to Detail Page. Injecting content.js...`);
+    chrome.scripting.executeScript({
+      target: { tabId: tabId },
+      files: ["content.js"]
+    });
   }
 });

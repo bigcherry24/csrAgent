@@ -25,7 +25,8 @@
             font-weight: bold;
         }
 
-        input[type="text"] {
+        input[type="text"],
+        input[type="number"] {
             width: 100%;
             padding: 8px;
             border: 1px solid #ccc;
@@ -63,6 +64,11 @@
     <div class="form-group">
         <label for="systemName">Default System Name:</label>
         <input type="text" id="systemName" placeholder="e.g. HMP">
+    </div>
+
+    <div class="form-group">
+        <label for="repeatCount">Repeat Count:</label>
+        <input type="number" id="repeatCount" min="1" value="1">
     </div>
 
     <button id="save">Save Settings</button>

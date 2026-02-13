@@ -22,6 +22,17 @@
     "http://127.0.0.1:5500/test_itsm_page.html*",
     "http://127.0.0.1:5500/test_itsm_list.html*"
   ],
+  "content_scripts": [
+    {
+      "matches": [
+        "http://127.0.0.1:5500/test_itsm_list.html*"
+      ],
+      "js": [
+        "content_list_router.js"
+      ],
+      "run_at": "document_idle"
+    }
+  ],
   "background": {
     "service_worker": "background.js"
   }
