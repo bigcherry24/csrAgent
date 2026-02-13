@@ -1,0 +1,23 @@
+{
+  "manifest_version": 3,
+  "name": "CSR Auto-Assigner",
+  "version": "1.0",
+  "description": "Automates CSR assignment on smartitsm.site.com",
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "contextMenus",
+    "storage"
+  ],
+  "options_ui": {
+    "page": "options.html",
+    "open_in_tab": false
+  },
+  "host_permissions": [
+    "http://127.0.0.1:5500/test_itsm_page.html*",
+    "http://127.0.0.1:5500/test_itsm_list.html*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  }
+}

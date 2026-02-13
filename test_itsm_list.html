@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSR List Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            margin: 20px auto;
+        }
+
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th,
+        td {
+            padding: 12px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f8f9fa;
+            font-weight: bold;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        .status-unassigned {
+            color: #dc3545;
+            font-weight: bold;
+        }
+
+        .status-assigned {
+            color: #28a745;
+            font-weight: bold;
+        }
+
+        a {
+            text-decoration: none;
+            color: #007bff;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>CSR 요청 리스트</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>제목</th>
+                    <th>상태</th>
+                    <th>요청자</th>
+                    <th>상세보기</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>CSR-001</td>
+                    <td>로그인 페이지 오류 수정 요청</td>
+                    <td class="status-unassigned">접수대기</td>
+                    <td>홍길동</td>
+                    <td><a href="test_itsm_page.html?id=1" class="btn">상세보기</a></td>
+                </tr>
+                <tr class="csr-row">
+                    <td>CSR-002</td>
+                    <td>결제 모듈 연동 기능 추가</td>
+                    <td class="status-unassigned">접수대기</td>
+                    <td>이순신</td>
+                    <td><a href="test_itsm_page.html?id=2" class="detail-link">상세보기</a></td>
+                </tr>
+                <tr>
+                    <td>CSR-003</td>
+                    <td>메인 배너 이미지 교체</td>
+                    <td class="status-assigned">할당완료</td>
+                    <td>강감찬</td>
+                    <td><a href="test_itsm_page.html?id=3">상세보기</a></td>
+                </tr>
+                <tr class="csr-row">
+                    <td>CSR-004</td>
+                    <td>회원가입 폼 유효성 검사 강화</td>
+                    <td class="status-unassigned">접수대기</td>
+                    <td>유관순</td>
+                    <td><a href="test_itsm_page.html?id=4" class="detail-link">상세보기</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>
