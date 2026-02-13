@@ -1,0 +1,15 @@
+- [x] Analyze existing project structure and functionality <!-- id: 0 -->
+- [x] Plan functionality extension <!-- id: 1 -->
+- [x] Implement extended functionality <!-- id: 2 -->
+    - [x] Create test_itsm_list.html
+    - [x] Create content_list_finder.js
+    - [x] Update manifest.json
+    - [x] Update background.js logic
+    - [x] Add redirect logic to content.js
+- [x] Implement System Search Feature <!-- id: 3 -->
+    - [x] Update test_itsm_page.html with search field
+    - [x] Update content.js to automate system search
+- [x] Implement Options Page for Configuration <!-- id: 4 -->
+    - [x] Create options.html & options.js
+    - [x] Update manifest.json (add storage permission & options_ui)
+    - [x] Update content.js to use stored System Name
